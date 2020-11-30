@@ -1,0 +1,20 @@
+Folder named flask in this project represents my virtualenv.
+
+requirement.txt represents what libraries and modules I have installed for the project
+
+api.py consist of the function get_colors() which is the key function for getting top 5 colors of the given input image. In this file we have imported different 
+libraries and the modules. RGB2HEX() this function is giving us the hex code of the given RGB color.
+
+app.py is the file from where we are running our API and calling the function get_image() at the endpoint api/colors
+
+Endpoint: api/colors?src='link of the image'
+
+http://127.0.0.1:5000/api/colors?src=https://storage.googleapis.com/bizupimg/profile_photo/IMG_20200917_190810.jpg
+
+{
+  "color0": "#cbaa97", 
+  "color1": "#fdd8df", 
+  "color2": "#4b4a49", 
+  "color3": "#917331", 
+  "color4": "#080606"
+}
