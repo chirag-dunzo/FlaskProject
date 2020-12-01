@@ -21,19 +21,20 @@ def get_colors(src):
     modified_image = cv2.resize(image, (600, 400), interpolation = cv2.INTER_AREA)
     modified_image = modified_image.reshape(modified_image.shape[0]*modified_image.shape[1], image.shape[2])
     
-    # Picking up the top 5 colors and then predicting it 
-    clf = KMeans(n_clusters = 5)
+    # Picking up the top 2 colors and then predicting it 
+    clf = KMeans(n_clusters = 2)
     labels = clf.fit_predict(modified_image)
     
     counts = Counter(labels)
-    counts = dict(sorted(counts.items()))
+    
+    counts = dict(sorted(counts.items(),key=lambda item: item[1],reverse=True))
 
     center_colors = clf.cluster_centers_
 
     # Getting all the colors in the form of dictionary in the hex_colors dictionary
     hex_colors = {}
 
-    for i in counts.keys():
-        hex_colors["color"+str(i)] =  RGB2HEX(center_colors[i])
+    hex_colors['dominant_color'] = RGB2HEX(center_colors[0])
+    hex_colors['logo_color'] = RGB2HEX(center_colors[1])
 
     return hex_colors
